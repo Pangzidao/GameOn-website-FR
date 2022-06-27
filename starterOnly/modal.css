@@ -314,6 +314,8 @@ input[data-error]::after {
   opacity: 1;
   cursor: pointer;
   transform: scale(0.7);
+  background-color: transparent;
+  border: none;
 }
 .close:before,
 .close:after {
