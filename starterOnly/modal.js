@@ -12,6 +12,10 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeBtn = document.querySelectorAll(".close");
+const text = document.querySelectorAll(".text-control");
+const form = document.getElementById("formulaire");
+
+const prenom = document.getElementById("first");
 
 
 // launch modal event
@@ -30,4 +34,33 @@ function closeModal() {
   modalbg.style.display = "none";
 }
 
+function validate(){
+  const prenomValue = prenom.value;
+
+
+  modalbg.addEventListener("submit", function(e){
+    if (prenomValue.length >= 2 && !prenomValue.match(/[0-9]/)){
+      console.log("formulaire correct");
+      form.submit();
+    }else{
+      e.preventDefault();
+    }
+  });
+
+
+  if (prenomValue.length < 2){
+    console.log("c'est trop court");
+    formData[0].setAttribute("data-error-visible", "true");
+    formData[0].setAttribute("data-error", "au moins 2 caractères");
+
+  }else if (prenomValue.match(/[0-9]/)){
+    console.log("lettres");
+    formData[0].setAttribute("data-error-visible", "true");
+    formData[0].setAttribute("data-error", "Lettres!");
+
+  }else{
+    console.log("c'est bon");
+    formData[0].setAttribute("data-error-visible", "false");
+  }
+}
 
