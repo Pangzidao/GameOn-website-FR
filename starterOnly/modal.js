@@ -23,7 +23,6 @@ const quantity = document.getElementById("quantity");
 const checkbox = document.getElementsByClassName("checkbox-input");
 
 
-
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -39,6 +38,7 @@ closeBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 function closeModal() {
   modalbg.style.display = "none";
 }
+
 
 function validate(){
   const prenomValue = prenom.value.trim();
@@ -67,8 +67,8 @@ function validate(){
       checkbox[6].checked == true
       )
       {
-      console.log("formulaire correct");
       form.submit();
+
     }else{
       e.preventDefault();
     }
@@ -78,40 +78,34 @@ function validate(){
 
 //prénom
   if (prenomValue.length < 2){
-    console.log("c'est trop court");
     formData[0].setAttribute("data-error-visible", "true");
-    formData[0].setAttribute("data-error", "au moins 2 caractères");
+    formData[0].setAttribute("data-error", "Veuillez entrer deux caractères ou plus pour le champ du prénom");
 
   }else if (prenomValue.match(/[0-9]/)){
-    console.log("lettres");
     formData[0].setAttribute("data-error-visible", "true");
-    formData[0].setAttribute("data-error", "Lettres!");
+    formData[0].setAttribute("data-error", "Le prénom ne doit pas contenir de chiffres");
 
   }else{
-    console.log("c'est bon");
     formData[0].setAttribute("data-error-visible", "false");
   }
 
 //nom
   if (nomValue.length < 2){
-    console.log("c'est trop court");
     formData[1].setAttribute("data-error-visible", "true");
-    formData[1].setAttribute("data-error", "au moins 2 caractères");
+    formData[1].setAttribute("data-error", "Veuillez entrer deux caractères ou plus pour le champ du nom");
 
   }else if (nomValue.match(/[0-9]/)){
-    console.log("lettres");
     formData[1].setAttribute("data-error-visible", "true");
-    formData[1].setAttribute("data-error", "Lettres!");
+    formData[1].setAttribute("data-error", "Le nom ne doit pas contenir de chiffres");
 
   }else{
-    console.log("c'est bon");
     formData[1].setAttribute("data-error-visible", "false");
   }
 
 //email
   if (!emailValue.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)){
     formData[2].setAttribute("data-error-visible", "true");
-    formData[2].setAttribute("data-error", "pas email");
+    formData[2].setAttribute("data-error", "Veuillez entrer une adresse e-mail");
   }else{
     formData[2].setAttribute("data-error-visible", "false");
   }
@@ -120,18 +114,16 @@ function validate(){
 
   if (dateValue == ""){
     formData[3].setAttribute("data-error-visible", "true");
-    formData[3].setAttribute("data-error", "pas date");
-    console.log("date invalide");
+    formData[3].setAttribute("data-error", "Veuillez choisir une date de naissance");
   }else{
     formData[3].setAttribute("data-error-visible", "false");
-    console.log("date valide");
   }
 
 //participation aux tournois
 
   if (quantityValue == ""){
     formData[4].setAttribute("data-error-visible", "true");
-    formData[4].setAttribute("data-error", "pas nombre");
+    formData[4].setAttribute("data-error", "Veuillez indiquer un nombre de tournoi");
   }else{
     formData[4].setAttribute("data-error-visible", "false");
   }
@@ -146,23 +138,20 @@ function validate(){
       checkbox[5].checked == false 
     ){
     formData[5].setAttribute("data-error-visible", "true");
-    formData[5].setAttribute("data-error", "pas de choix");
-    console.log("pas de choix");
+    formData[5].setAttribute("data-error", "Veuillez choisir un tournoi");
   }else{
     formData[5].setAttribute("data-error-visible", "false");
-    console.log("choix");
   }
 
 //conditions d'utilisation
 
 if (checkbox[6].checked == false){
 formData[6].setAttribute("data-error-visible", "true");
-formData[6].setAttribute("data-error", "valider les conditions d'utilisation");
-console.log("pas de choix");
+formData[6].setAttribute("data-error", "Vous devez valider les conditions d'utilisation pour vous s'inscrire");
 }else{
 formData[6].setAttribute("data-error-visible", "false");
-console.log("choix");
 }
+
 
 
   //fermeture de la fonction validate
