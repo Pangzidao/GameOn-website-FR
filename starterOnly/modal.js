@@ -14,13 +14,20 @@ const formData = document.querySelectorAll(".formData");
 const closeBtn = document.querySelectorAll(".close");
 const text = document.querySelectorAll(".text-control");
 const form = document.getElementById("formulaire");
-
 const prenom = document.getElementById("first");
 const nom = document.getElementById("last");
 const email = document.getElementById("email");
 const date = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
 const checkbox = document.getElementsByClassName("checkbox-input");
+
+let prenomFormat = false;
+let nomFormat = false;
+let emailFormat = false;
+let dateFormat = false;
+let quantityFormat = false;
+let checkboxFormat = false;
+let userConditionFormat = false;
 
 
 // launch modal event
@@ -40,6 +47,7 @@ function closeModal() {
 }
 
 
+
 function validate(){
   const prenomValue = prenom.value.trim();
   const nomValue = nom.value.trim();
@@ -48,66 +56,51 @@ function validate(){
   const quantityValue = quantity.value.trim();
   
 
-//Vérification de la soumission du formulaire
-
-  modalbg.addEventListener("submit", function(e){
-    if (prenomValue.length >= 2 && 
-      !prenomValue.match(/[0-9]/) &&
-      nomValue.length >= 2 && 
-      !nomValue.match(/[0-9]/) &&
-      emailValue.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/) &&
-      dateValue !== "" &&
-      quantityValue !== "" &&
-      (checkbox[0].checked == true ||
-      checkbox[1].checked == true ||
-      checkbox[2].checked == true ||
-      checkbox[3].checked == true ||
-      checkbox[4].checked == true ||
-      checkbox[5].checked == true)&&
-      checkbox[6].checked == true
-      )
-      {
-      form.submit();
-
-    }else{
-      e.preventDefault();
-    }
-  });
-
 //Messages d'erreur
 
 //prénom
+  
   if (prenomValue.length < 2){
     formData[0].setAttribute("data-error-visible", "true");
     formData[0].setAttribute("data-error", "Veuillez entrer deux caractères ou plus pour le champ du prénom");
+    prenomFormat = false;
+
 
   }else if (prenomValue.match(/[0-9]/)){
     formData[0].setAttribute("data-error-visible", "true");
     formData[0].setAttribute("data-error", "Le prénom ne doit pas contenir de chiffres");
+    prenomFormat = false;
 
   }else{
     formData[0].setAttribute("data-error-visible", "false");
+    prenomFormat = true;
   }
 
 //nom
   if (nomValue.length < 2){
     formData[1].setAttribute("data-error-visible", "true");
     formData[1].setAttribute("data-error", "Veuillez entrer deux caractères ou plus pour le champ du nom");
+    nomFormat = false;
+
 
   }else if (nomValue.match(/[0-9]/)){
     formData[1].setAttribute("data-error-visible", "true");
     formData[1].setAttribute("data-error", "Le nom ne doit pas contenir de chiffres");
+    nomFormat = false;
 
   }else{
     formData[1].setAttribute("data-error-visible", "false");
+    nomFormat = true;
   }
 
 //email
   if (!emailValue.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)){
     formData[2].setAttribute("data-error-visible", "true");
     formData[2].setAttribute("data-error", "Veuillez entrer une adresse e-mail");
+    emailFormat = false;
   }else{
     formData[2].setAttribute("data-error-visible", "false");
+    emailFormat = true;
   }
 
 //date
@@ -115,8 +108,10 @@ function validate(){
   if (dateValue == ""){
     formData[3].setAttribute("data-error-visible", "true");
     formData[3].setAttribute("data-error", "Veuillez choisir une date de naissance");
+    dateFormat = false;
   }else{
     formData[3].setAttribute("data-error-visible", "false");
+    dateFormat = true;
   }
 
 //participation aux tournois
@@ -124,8 +119,10 @@ function validate(){
   if (quantityValue == ""){
     formData[4].setAttribute("data-error-visible", "true");
     formData[4].setAttribute("data-error", "Veuillez indiquer un nombre de tournoi");
+    quantityFormat = false;
   }else{
     formData[4].setAttribute("data-error-visible", "false");
+    quantityFormat = true;
   }
 
 //quel tournoi?
@@ -139,8 +136,10 @@ function validate(){
     ){
     formData[5].setAttribute("data-error-visible", "true");
     formData[5].setAttribute("data-error", "Veuillez choisir un tournoi");
+    checkboxFormat = false;
   }else{
     formData[5].setAttribute("data-error-visible", "false");
+    checkboxFormat = true;
   }
 
 //conditions d'utilisation
@@ -148,9 +147,39 @@ function validate(){
 if (checkbox[6].checked == false){
 formData[6].setAttribute("data-error-visible", "true");
 formData[6].setAttribute("data-error", "Vous devez valider les conditions d'utilisation pour vous s'inscrire");
+userConditionFormat = false;
 }else{
 formData[6].setAttribute("data-error-visible", "false");
+userConditionFormat = true;
 }
+
+//Vérification de la soumission du formulaire
+
+
+modalbg.addEventListener("submit", function(e){
+  if (prenomFormat == true &&
+    nomFormat == true &&
+    emailFormat == true &&
+    dateFormat == true &&
+    quantityFormat == true &&
+    checkboxFormat == true &&
+    userConditionFormat == true
+    )
+    {
+    form.submit();
+
+  }else{
+    e.preventDefault();
+  }
+});
+
+console.log("prenom",prenomFormat);
+console.log("nom",nomFormat);
+console.log("email",emailFormat);
+console.log("date",dateFormat);
+console.log("quantity",quantityFormat);
+console.log("checkbox",checkboxFormat);
+console.log("user conditions",userConditionFormat);
 
 
 
