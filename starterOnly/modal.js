@@ -29,7 +29,6 @@ let quantityFormat = false;
 let checkboxFormat = false;
 let userConditionFormat = false;
 
-
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -55,7 +54,6 @@ function validate(){
   const dateValue = date.value.trim();
   const quantityValue = quantity.value.trim();
   
-
 //Messages d'erreur
 
 //prénom
@@ -166,23 +164,17 @@ function validate(){
       )
       {
       form.submit();
-
+      messageConfirmation()
     }else{
       e.preventDefault();
     }
   });
 
-console.log("prenom",prenomFormat);
-console.log("nom",nomFormat);
-console.log("email",emailFormat);
-console.log("date",dateFormat);
-console.log("quantity",quantityFormat);
-console.log("checkbox",checkboxFormat);
-console.log("user conditions",userConditionFormat);
-
-
-
   //fermeture de la fonction validate
+}
+
+function messageConfirmation(){
+  console.log("messageConfirmation");
 }
 
 
