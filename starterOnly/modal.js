@@ -144,34 +144,33 @@ function validate(){
 
 //conditions d'utilisation
 
-if (checkbox[6].checked == false){
-formData[6].setAttribute("data-error-visible", "true");
-formData[6].setAttribute("data-error", "Vous devez valider les conditions d'utilisation pour vous s'inscrire");
-userConditionFormat = false;
-}else{
-formData[6].setAttribute("data-error-visible", "false");
-userConditionFormat = true;
-}
+  if (checkbox[6].checked == false){
+    formData[6].setAttribute("data-error-visible", "true");
+    formData[6].setAttribute("data-error", "Vous devez valider les conditions d'utilisation pour vous s'inscrire");
+    userConditionFormat = false;
+  }else{
+    formData[6].setAttribute("data-error-visible", "false");
+    userConditionFormat = true;
+  }
 
 //Vérification de la soumission du formulaire
 
+  modalbg.addEventListener("submit", function(e){
+    if (prenomFormat == true &&
+      nomFormat == true &&
+      emailFormat == true &&
+      dateFormat == true &&
+      quantityFormat == true &&
+      checkboxFormat == true &&
+      userConditionFormat == true
+      )
+      {
+      form.submit();
 
-modalbg.addEventListener("submit", function(e){
-  if (prenomFormat == true &&
-    nomFormat == true &&
-    emailFormat == true &&
-    dateFormat == true &&
-    quantityFormat == true &&
-    checkboxFormat == true &&
-    userConditionFormat == true
-    )
-    {
-    form.submit();
-
-  }else{
-    e.preventDefault();
-  }
-});
+    }else{
+      e.preventDefault();
+    }
+  });
 
 console.log("prenom",prenomFormat);
 console.log("nom",nomFormat);
