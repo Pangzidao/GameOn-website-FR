@@ -57,10 +57,9 @@
         <div class="content">
           <button class="close"></button>
           <div class="modal-body">
+            <p id="message-inscription">Merci pour votre inscription</p>
             <form
               name="reserve"
-              action=""
-              method="get"
               id="formulaire"
               onsubmit="return validate();"
               novalidate
@@ -203,13 +202,22 @@
                 <br>
               </div>
               <input
-                class="btn-submit"
+                id="btn-submit"
                 type="submit"
                 class="button"
                 value="C'est parti"
               />
+                     
             </form>
+            <input
+            id="btn-close"
+            type="button"
+            class="button"
+            value="Fermer"
+          />  
+         
           </div>
+  
         </div>
       </div>
     </main>

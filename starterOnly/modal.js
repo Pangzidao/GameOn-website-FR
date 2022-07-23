@@ -20,6 +20,10 @@ const email = document.getElementById("email");
 const date = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
 const checkbox = document.getElementsByClassName("checkbox-input");
+const messageInscription = document.getElementById("message-inscription");
+const btnClose = document.getElementById("btn-close");
+
+console.log(btnClose);
 
 let prenomFormat = false;
 let nomFormat = false;
@@ -35,10 +39,12 @@ modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
+  btnClose.style.display = "none";
 }
 
 // close modal event
 closeBtn.forEach((btn) => btn.addEventListener("click", closeModal));
+btnClose.addEventListener("click", closeModal);
 
 // close modal form
 function closeModal() {
@@ -163,8 +169,11 @@ function validate(){
       userConditionFormat == true
       )
       {
-      form.submit();
-      messageConfirmation()
+      e.preventDefault();
+      console.log("formulaire correct");
+      form.style.display = "none";
+      messageInscription.style.display = "flex";
+      btnClose.style.display = "block";
     }else{
       e.preventDefault();
     }
@@ -173,9 +182,6 @@ function validate(){
   //fermeture de la fonction validate
 }
 
-function messageConfirmation(){
-  console.log("messageConfirmation");
-}
 
 
 
