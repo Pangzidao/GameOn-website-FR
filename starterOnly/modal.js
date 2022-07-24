@@ -159,7 +159,6 @@ function validate(){
   }
 
 //Vérification de la soumission du formulaire
-
   modalbg.addEventListener("submit", function(e){
     if (prenomFormat == true &&
       nomFormat == true &&
@@ -178,7 +177,7 @@ function validate(){
       e.preventDefault();
     }
   });
-
+  
   //fermeture de la fonction validate
 }
 
