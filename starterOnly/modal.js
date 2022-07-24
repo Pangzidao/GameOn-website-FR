@@ -53,7 +53,7 @@ function closeModal() {
 }
 
 
-
+// fonction de validation du formulaire
 function validate(){
   const prenomValue = prenom.value.trim();
   const nomValue = nom.value.trim();
@@ -61,10 +61,10 @@ function validate(){
   const dateValue = date.value.trim();
   const quantityValue = quantity.value.trim();
   
-//Messages d'erreur
 
+
+//Messages d'erreur
 //prénom
-  
   if (prenomValue.length < 2){
     formData[0].setAttribute("data-error-visible", "true");
     formData[0].setAttribute("data-error", "Veuillez entrer deux caractères ou plus pour le champ du prénom");
