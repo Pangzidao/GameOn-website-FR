@@ -11,6 +11,8 @@ function editNav() {
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
+
+// Ajout de DOM Elements
 const closeBtn = document.querySelectorAll(".close");
 const text = document.querySelectorAll(".text-control");
 const form = document.getElementById("formulaire");
@@ -23,8 +25,7 @@ const checkbox = document.getElementsByClassName("checkbox-input");
 const messageInscription = document.getElementById("message-inscription");
 const btnClose = document.getElementById("btn-close");
 
-console.log(btnClose);
-
+// variables de vérification de la validité du formulaire
 let prenomFormat = false;
 let nomFormat = false;
 let emailFormat = false;
@@ -170,7 +171,6 @@ function validate(){
       )
       {
       e.preventDefault();
-      console.log("formulaire correct");
       form.style.display = "none";
       messageInscription.style.display = "flex";
       btnClose.style.display = "block";
