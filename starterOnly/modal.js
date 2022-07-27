@@ -34,6 +34,7 @@ let quantityFormat = false;
 let checkboxFormat = false;
 let userConditionFormat = false;
 
+
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 
@@ -60,6 +61,10 @@ function validate(){
   const emailValue = email.value.trim();
   const dateValue = date.value.trim();
   const quantityValue = quantity.value.trim();
+
+  console.log(dateValue)
+
+
   
 
 
@@ -74,6 +79,11 @@ function validate(){
   }else if (prenomValue.match(/[0-9]/)){
     formData[0].setAttribute("data-error-visible", "true");
     formData[0].setAttribute("data-error", "Le prénom ne doit pas contenir de chiffres");
+    prenomFormat = false;
+
+  }else if (prenomValue.length > 30){
+    formData[0].setAttribute("data-error-visible", "true");
+    formData[0].setAttribute("data-error", "Le prénom est trop long");
     prenomFormat = false;
 
   }else{
@@ -91,6 +101,11 @@ function validate(){
   }else if (nomValue.match(/[0-9]/)){
     formData[1].setAttribute("data-error-visible", "true");
     formData[1].setAttribute("data-error", "Le nom ne doit pas contenir de chiffres");
+    nomFormat = false;
+  
+  }else if (nomValue.length > 30){
+    formData[1].setAttribute("data-error-visible", "true");
+    formData[1].setAttribute("data-error", "Le nom est trop long");
     nomFormat = false;
 
   }else{
@@ -124,6 +139,10 @@ function validate(){
   if (quantityValue == ""){
     formData[4].setAttribute("data-error-visible", "true");
     formData[4].setAttribute("data-error", "Veuillez indiquer un nombre de tournoi");
+    quantityFormat = false;
+  }else if (quantityValue > 10){
+    formData[4].setAttribute("data-error-visible", "true");
+    formData[4].setAttribute("data-error", "10 tournois maximum");
     quantityFormat = false;
   }else{
     formData[4].setAttribute("data-error-visible", "false");
